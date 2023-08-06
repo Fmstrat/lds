@@ -40,7 +40,7 @@ npm start
 |Variable|Description|
 |-|-|
 |LOCAL_URL|The URL of your instance|
-|LOCAL_USERNAME|Username of a user for your instance|
-|LOCAL_PASSWORD|Password of a user for your instance|
+|LOCAL_USERNAME|Username of the admin user for your instance|
+|LOCAL_PASSWORD|Password of the admin user for your instance|
 |REMOTE_INSTANCES|The remote instances you would like to sync your defederation list with (combined)|
 |MINUTES_BETWEEN_RUNS|How long to wait between runs|
