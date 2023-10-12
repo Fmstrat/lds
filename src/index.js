@@ -59,6 +59,7 @@ async function main() {
         password: localPassword,
       };
       let user = await localClient.login(loginForm);
+      localClient.setHeaders({Authorization: "Bearer " + user.jwt});
       let localInstances = await localClient.getFederatedInstances({});
       let localBlocked = new Set();
       for await (const localInstance of localInstances.federated_instances.blocked) {
