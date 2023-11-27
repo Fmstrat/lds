@@ -1,7 +1,8 @@
 FROM node:alpine
+ENV NODE_ENV=production
 
 ADD src /app
 WORKDIR /app
-RUN npm install
+RUN npm install --production
 
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
