@@ -1,1 +1,5 @@
 src/node_modules
+.github
+.gitignore
+Dockerfile
+.dockerignore
