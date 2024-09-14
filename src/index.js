@@ -59,10 +59,11 @@ async function main() {
         password: localPassword,
       };
       let user = await localClient.login(loginForm);
+      localClient.setHeaders({Authorization: "Bearer " + user.jwt});
       let localInstances = await localClient.getFederatedInstances({});
       let localBlocked = new Set();
       for await (const localInstance of localInstances.federated_instances.blocked) {
-        localBlocked.add(localInstance.domain);
+        localBlocked.add(localInstance.domain.toLowerCase());
       }
       let remoteBlocked = new Set();
       for await (const remoteInstance of remoteInstances) {
@@ -70,7 +71,7 @@ async function main() {
         let remoteClient = new LemmyHttp(`https://${remoteInstance}`);
         let remoteInstances = await remoteClient.getFederatedInstances({});
         for await (const blocked of remoteInstances.federated_instances.blocked) {
-          remoteBlocked.add(blocked.domain);
+          remoteBlocked.add(blocked.domain.toLowerCase());
         }
       }
       if (setEquals(remoteBlocked, localBlocked)) {
